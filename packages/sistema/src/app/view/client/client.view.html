@@ -1,0 +1,106 @@
+<div class="container"> 
+    <!-- <code >
+        <pre>{{result | json }}</pre>
+    </code> -->
+  <button class='btn' (click)="ngxSmartModalService.getModal('createModal').open()">AGREGAR</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Deuda</th> 
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr *ngFor='let res of result; index as i'>
+                <td>{{ i+1 }}</td>
+                <td>{{res.NombreCliente}}</td>
+                <td>{{res.CorreoElectronico}}</td>
+                <td>{{res.MontoMaximoMorosidad}}</td> 
+                <td>
+                    <button (click)="edit(res)">
+                        Editar
+                    </button>
+                    <button (click)="eliminar(res._id)">
+                        Eliminar
+                    </button>
+                </td> 
+            </tr>
+            <tr *ngIf='result && result.length === 0'>
+                <td colSpan="5" >No existe Resultado o <strong>Endpoint caido</strong> !!</td>
+                 
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Agregar nuevo usuario -->
+  <ngx-smart-modal #myModal identifier="createModal">
+    <form autocomplete="off" [formGroup]="formulario" class='login-form' (submit)="onFormSubmit()">
+        <div class='row'>
+ 
+           <div class="col-xs-5 col-md-5">
+              <input placeholder='Nombre Completo' formControlName='NombreCliente' type="text" >
+           </div>
+ 
+           <div class="col-xs-7 col-sm-7">
+            <input placeholder='Correo' formControlName='CorreoElectronico' type="text">
+
+           </div>
+ 
+           <div class='col-xs-12 col-sm-12'>
+            <input placeholder='Monto Deuda' formControlName='MontoMaximoMorosidad' type="text">
+
+           </div> 
+
+        </div>
+        <div class='row center-xs'>
+           <div class='col-xs-12 col-sm-12 mt-20'>
+
+              <button type='submit'color="primary" class='btn'
+                 [disabled]='validButtomForm() && loading'>
+                 Registrar
+              </button>
+           </div>
+        </div>
+
+     </form>
+    <!-- <button (click)="myModal.close()">Close</button> -->
+  </ngx-smart-modal>
+  <ngx-smart-modal #myModal identifier="editarModal">
+    <form autocomplete="off" [formGroup]="editFormulario" class='login-form' (submit)="onEditFormSubmit()">
+        <div class='row'>
+ 
+           <div class="col-xs-5 col-md-5">
+              <input placeholder='Nombre Completo' formControlName='NombreCliente' type="text" >
+           </div>
+ 
+           <div class="col-xs-7 col-sm-7">
+            <input placeholder='Correo' formControlName='CorreoElectronico' type="text">
+
+           </div>
+ 
+           <div class='col-xs-12 col-sm-12'>
+            <input placeholder='Monto Deuda' formControlName='MontoMaximoMorosidad' type="text">
+
+           </div> 
+
+        </div>
+        <div class='row center-xs'>
+           <div class='col-xs-12 col-sm-12 mt-20'>
+
+              <button type='submit'color="primary" class='btn '
+                 [disabled]='validButtomForm() && loading'>
+                 Actualizar
+              </button>
+           </div>
+        </div>
+
+     </form>
+    <!-- <button (click)="myModal.close()">Close</button> -->
+  </ngx-smart-modal>

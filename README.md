@@ -16,5 +16,5 @@ cd packages/sistema
 
 ### Screenshots
 
-![Vista principal](packages/sistema/src/assets/resultado@2x.png)
-![Vista principal](packages/sistema/src/assets/edicion@2x.png)
+![Vista principal](./packages/sistema/src/assets/resultado@2x.png)
+![Vista principal](./packages/sistema/src/assets/edicion@2x.png)
